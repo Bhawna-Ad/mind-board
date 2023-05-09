@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold" href="#">Mind Board</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item me-3">
+                <a class="nav-link" aria-current="page" href="myboard.html">MyBoard</a>
+              </li>
+              <li class="nav-item me-3">
+                <a class="nav-link" href="#">Statistics</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="year">
+        <strong id="current-year"></strong>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-1">
+          <div class="bg-white p-3 rounded-3" style="text-align: end;">
+            <h5 class="mb-0">May</h5>
+          </div>
+        </div>
+        <div class="col-md-11">
+          <div class="rect-box p-3 rounded-3">
+            <div class="row" id="tileRow"></div>
+          </div>
+        </div>
+      </div>
+      
+
+      <button class="btn-floating" type="button" data-bs-toggle="modal" data-bs-target="#addTileModal">
+        <span class="plus">+</span>
+      </button>
+      
+      <div class="modal fade" id="addTileModal" tabindex="-1" aria-labelledby="addTileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addTileModalLabel">Add a new tile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p class="mb-3">How are you feeling today?</p>
+              <div class="row" id="moodRow">
+                <div class="col">
+                  <img src="/images/mood1.png" id="mood1" alt="mood1" class="mood-img" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mood 1">
+                </div>
+                <div class="col">
+                  <img src="/images/mood2.png" id="mood2" alt="mood2" class="mood-img" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mood 2">
+                </div>
+                <div class="col">
+                  <img src="/images/mood3.png" id="mood3" alt="mood3" class="mood-img" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mood 3"">
+                </div>
+                <div class="col">
+                  <img src="/images/mood4.png" id="mood4" alt="mood4" class="mood-img" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mood 4">
+                </div>
+                <div class="col">
+                  <img src="/images/mood5.png" id="mood5" alt="mood5" class="mood-img" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Mood 5">
+                </div>
+              </div>
+              <p class="mb-3">Which of the following options most accurately describe the reason for this mood?</p>
+
+              <div class="reason-options-container">
+                <p class="reason-option">Friends or Colleagues</p>
+                <p class="reason-option">Personal Health</p>
+                <p class="reason-option">Work</p>
+                <p class="reason-option">Academics</p>
+                <p class="reason-option">Family</p>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <div  class="d-grid gap-2 col-6 mx-auto">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTileModalNext">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="addTileModalNext" tabindex="-1" aria-labelledby="addTileModalNext" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addTileModalLabel">Add a new tile</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body  justify-content-center">
+              <p class="mb-3">Select a medium to express yourself in</p>
+              <div class="row" style="padding-bottom: 10px;">
+                <div class="col-6" style="display: flex; justify-content: center; align-items: center;">
+                  <button class="btn btn-primary" id="text-button" style="width: 200px;">Text</button>
+                </div>
+                <div class="col-6" style="display: flex; justify-content: center; align-items: center;">
+                  <button class="btn btn-outline-primary" id="video-button" style="width: 200px;">Video</button>
+                </div>
+              </div>
+              <p class="mb-3">Describe your day</p>
+
+              <div class="row text-container" id="day-description">
+                <textarea id="text-box"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+              <div  class="d-grid gap-2 col-6 mx-auto">
+                <button type="button" id="add-tile" class="btn btn-primary">Add Tile</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
+    <script src="myboard.js"></script>
+</body>
+</html>

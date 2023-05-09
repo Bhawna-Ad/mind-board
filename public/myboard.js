@@ -1,5 +1,6 @@
 const year = new Date().getFullYear();
 document.getElementById("current-year").textContent = year;
+const colors = ["#ec2128", "#f35928", "#fcb03a", "#009348", "#21abe3"];
 
 const moodImgs = document.querySelectorAll('#moodRow img');
 let selectedimg;
@@ -11,7 +12,7 @@ moodImgs.forEach(img => {
     });
     this.classList.add('img-large');
     selectedimg = img;
-    console.log(selectedimg);
+    console.log(selectedimg.id);
   });
 });
 
@@ -108,13 +109,57 @@ text.addEventListener('click', function() {
 
 const addTileButton = document.getElementById('add-tile');
 addTileButton.addEventListener('click', function() {
-  window.location.href = 'myboard.html';
+  let bgcolor;
+  let val;
+  switch(selectedimg.id) {
+    case "mood1":
+      bgcolor = colors[0];
+      val = Math.floor(Math.random() * (3));
+      break;
+    case "mood2":
+      bgcolor = colors[1];
+      val = Math.floor(Math.random() * (2)) + 3;
+      break;
+    case "mood3":
+      bgcolor = colors[2];
+      val = Math.floor(Math.random() * (2)) + 5;
+      break;
+    case "mood4":
+      bgcolor = colors[3];
+      val = Math.floor(Math.random() * (2)) + 7;
+      break;
+    case "mood5":
+      bgcolor = colors[4];
+      val = Math.floor(Math.random() * (2)) + 99;
+      break;
+  }
+  document.querySelector('.modal-backdrop').remove();
   const tile = document.createElement('div');
-  tile.classList.add('col');
-  tile.classList.add('tile');
+  tile.style.backgroundColor = bgcolor;
+  tile.textContent = val;
+  tile.classList.add('mood-tile');
   const tileRow = document.getElementById('tileRow');
   tileRow.appendChild(tile);
 });
+
+const tiles = document.querySelectorAll('.mood-tile');
+tiles.forEach(tile => {
+  const value = tile.textContent;
+  let bg;
+  if(value <= 2) {
+    bg = colors[0];
+  } else if(value < 5) {
+    bg = colors[1];
+  } else if(value < 7) {
+    bg = colors[2];
+  } else if(value < 9) {
+    bg = colors[3];
+  } else {
+    bg = colors[4];
+  }
+
+  tile.style.backgroundColor = bg;
+})
 
 
 

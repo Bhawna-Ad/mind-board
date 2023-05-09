@@ -130,7 +130,7 @@ addTileButton.addEventListener('click', function() {
       break;
     case "mood5":
       bgcolor = colors[4];
-      val = Math.floor(Math.random() * (2)) + 99;
+      val = Math.floor(Math.random() * (2)) + 9;
       break;
   }
   document.querySelector('.modal-backdrop').remove();
@@ -159,7 +159,11 @@ tiles.forEach(tile => {
   }
 
   tile.style.backgroundColor = bg;
-})
+
+  tile.addEventListener('click', () => {
+    console.log("tile clicked");
+  });
+});
 
 
 
